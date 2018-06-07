@@ -52,6 +52,49 @@ class Contact extends Conection {
 	
 	
 	/**
+	 * Contact does not exist .
+	 */
+	const STATE_NO_EXISTS = 0;
+
+	/**
+	 * Contact exists but without the permission to send.
+	 */
+	const STATE_EXISTS_WITHOUT_PERMISSION = 1;
+
+	/**
+	 * Contact exists but the sending is forbidden.
+	 */
+	const STATE_EXISTS_WITH_SENDING_FORBIDDEN = 2;
+
+	/**
+	 * Contact exists and has permission to send.
+	 */
+	const STATE_EXISTS_WITH_PERMISSION = 3;
+
+	/**
+	 * Contact exists and has permission to send but there is no information required by GDPR.
+	 */
+	const STATE_EXISTS_WITH_PERMISSION_GDPR_DEFICIENCY = 4;
+
+	/**
+	 * Contact exists and has permission to send but control of GDPR is disabled.
+	 */
+	const STATE_EXISTS_WITH_PERMISSION_GDPR_DISABLED = 5;	
+	
+	
+	/**
+	 * Returns state the contact.
+	 * 
+	 * @param string $email
+	 * @return int
+	 */
+	public function state($email) {	
+		
+		return (int)$this->run('Contact', __FUNCTION__, func_get_args());
+	}
+	
+	
+	/**
 	 * Adds new contact using the country as reference to found destination database.
 	 * 
 	 * @param string $email Email address
