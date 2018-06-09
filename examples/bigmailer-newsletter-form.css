@@ -1,0 +1,110 @@
+/**
+ * Registros en la Red
+ * Copyright (c) Registros en la Red
+ *
+ * @copyright   Registros en la Red
+ * @link        http://registros.net
+ */
+/* 
+    Created on : 07-jun-2018, 20:02:55
+    Author     : adrian
+*/
+
+body {
+	
+    margin:2px;
+    max-width: 446px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	
+}
+
+
+div.title {
+	
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 5px;
+	
+}
+
+.Newsletter div.label {
+	
+	display: none;
+}
+
+
+.Newsletter input.name,
+.Newsletter input.email {
+	
+	width: 446px;
+}
+
+
+.Newsletter input[type=text],
+.Newsletter input[type=date],
+.Newsletter input[type=datetime],
+.Newsletter input[type=number],
+.Newsletter input[type=search],
+.Newsletter input[type=time],
+.Newsletter input[type=url],
+.Newsletter input[type=email],
+textarea,
+select{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+/*    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;*/
+    outline: none; 
+	margin-bottom: 5px;
+}
+.Newsletter input[type=text]:focus,
+.Newsletter input[type=date]:focus,
+.Newsletter input[type=datetime]:focus,
+.Newsletter input[type=number]:focus,
+.Newsletter input[type=search]:focus,
+.Newsletter input[type=time]:focus,
+.Newsletter input[type=url]:focus,
+.Newsletter input[type=email]:focus,
+.Newsletter textarea:focus,
+.Newsletter select:focus{
+    -moz-box-shadow: 0 0 2px #88D5E9;
+    -webkit-box-shadow: 0 0 2px #88D5E9;
+    box-shadow: 0 0 2px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+.Newsletter .field-divided{
+    width: 49%;
+}
+
+.Newsletter .field-long{
+    width: 100%;
+}
+.Newsletter .field-select{
+    width: 100%;
+}
+.Newsletter .field-textarea{
+    height: 100px;
+}
+.Newsletter input[type=submit], 
+.Newsletter input[type=button]{
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+}
+.Newsletter input[type=submit]:hover, 
+.Newsletter input[type=button]:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.Newsletter .required{
+    color:red;
+}

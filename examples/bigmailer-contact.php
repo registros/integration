@@ -11,7 +11,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Integration of bigmailer</title>
+		<title>bigmailer-contact</title>
 	</head>
 
 	<body>

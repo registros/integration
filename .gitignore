@@ -1,3 +1,7 @@
 ~/.gitconfig
-./test*.*
+test.*
 documents/*.odt
+var
+var/*
+local
+local/*
