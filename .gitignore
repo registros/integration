@@ -1,6 +1,7 @@
 ~/.gitconfig
 test.*
 documents/*.odt
+documents/.~lock*
 var
 var/*
 local
