@@ -13,5 +13,6 @@ require_once '../vendor/Registros/loader.php';
 use Registros\Bigmailer\Newsletter\Callback;
 
 $callback = new Callback();
+//$callback->setStorageMode(Callback::STORAGE_SESSION);
 $callback->register(@$_GET['session']);
 
