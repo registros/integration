@@ -76,7 +76,7 @@ abstract class Conection {
 		$input = rawurlencode($input);
 		
 		$url = "https://bigmailer.cloud/api/json/run";
-		$url = "http://bigmailer.local.net/api/json/run";
+//		$url = "http://bigmailer.local.net/api/json/run";
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
