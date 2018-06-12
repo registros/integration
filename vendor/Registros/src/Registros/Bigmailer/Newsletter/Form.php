@@ -45,13 +45,13 @@ class Form {
 	 *
 	 * @var string 
 	 */
-	private $width = '450px';
+	private $width = '100%';
 	
 	/**
 	 *
 	 * @var string 
 	 */
-	private $height = '300px';
+	private $height = '320px';
 	
 	/**
 	 *
@@ -114,6 +114,12 @@ class Form {
 	 * @return string
 	 */
 	function getTitle() {
+		
+		if ($this->title === FALSE) {
+			
+			return 'no';
+		}
+		
 		return $this->title;
 	}
 
@@ -136,8 +142,9 @@ class Form {
 	}
 
 	/**
+	 * Sets newsletter title.
 	 * 
-	 * @param string $title
+	 * @param string|FALSE $title Put FALSE to hidden the title.
 	 */
 	function setTitle($title) {
 		$this->title = $title;
@@ -285,6 +292,8 @@ class Form {
 		$css = $this->getCss();
 		$callback = $this->getCallback();
 		$title = $this->getTitle();
+		
+
 		
 		if ($css) {
 		
