@@ -66,12 +66,9 @@ select{
     border:1px solid #BEBEBE;
     padding: 7px;
     margin:0px;
-	/*    -webkit-transition: all 0.30s ease-in-out;
-		-moz-transition: all 0.30s ease-in-out;
-		-ms-transition: all 0.30s ease-in-out;
-		-o-transition: all 0.30s ease-in-out;*/
     outline: none; 
 	margin-bottom: 5px;
+	transition: all 0.8s ease;
 }
 .Newsletter input[type=text]:focus,
 .Newsletter input[type=date]:focus,
@@ -83,10 +80,10 @@ select{
 .Newsletter input[type=email]:focus,
 .Newsletter textarea:focus,
 .Newsletter select:focus{
-    -moz-box-shadow: 0 0 2px #88D5E9;
-    -webkit-box-shadow: 0 0 2px #88D5E9;
-    box-shadow: 0 0 2px #88D5E9;
-    border: 1px solid #88D5E9;
+    -moz-box-shadow: 0 0 2px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.25);
+    box-shadow: 0 0 2px rgba(0,0,0,0.25);
+    border: 1px solid #999999;
 }
 .Newsletter .field-divided{
     width: 49%;
@@ -103,14 +100,16 @@ select{
 }
 .Newsletter input[type=submit], 
 .Newsletter input[type=button]{
-    background: #4B99AD;
+    background: #BEBEBE;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
+	cursor: pointer;
+	transition: all 0.8s ease;
 }
 .Newsletter input[type=submit]:hover, 
 .Newsletter input[type=button]:hover{
-    background: #4691A4;
+    background: #999999;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
@@ -132,7 +131,6 @@ select{
 	background-color: #FFFFFF;
 	border: 1px solid #BEBEBE;
 	padding: 9px;
-	/*border-radius: 3px;*/
 	display: inline-block;
 	position: relative;
 
