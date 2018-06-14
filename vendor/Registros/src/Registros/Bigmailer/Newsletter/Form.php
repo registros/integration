@@ -25,6 +25,12 @@ class Form {
 	
 	/**
 	 *
+	 * @var string
+	 */
+	private $id;
+	
+	/**
+	 *
 	 * @var string 
 	 */
 	private $css;
@@ -58,7 +64,12 @@ class Form {
 	 * @var ICallback 
 	 */
 	private $callback_controller;
-
+	
+	/**
+	 *
+	 * @var boolean 
+	 */
+	private $load_on_show = TRUE;
 
 	/**
 	 * 
@@ -67,6 +78,7 @@ class Form {
 	function __construct($public_key) {
 		
 		$this->public_key = trim($public_key);
+		$this->id = uniqid();
 
 	}
 
@@ -179,8 +191,26 @@ class Form {
 		
 		$this->width = $width;
 		
-		
 	}
+	
+	/**
+	 * 
+	 * @return boolean
+	 */
+	function getLoadOnShow() {
+		return $this->load_on_show;
+	}
+
+	/**
+	 * Delayed loading until the form will be visible.
+	 * 
+	 * @param boolean $load_on_show
+	 */
+	function setLoadOnShow($load_on_show) {
+		$this->load_on_show = $load_on_show;
+	}
+
+	
 
 	/**
 	 * 
@@ -271,21 +301,12 @@ class Form {
 		return $this->getCallbackController()->isRegistered();
 	}
 	
+	
 	/**
-	 * Returns HTML code of IFRAME.
 	 * 
-	 * @return string|NULL
+	 * @return string
 	 */
-	public function render($show_registered = FALSE) {
-		
-		if (!$show_registered) {
-			
-			if ($this->isRegistered()) {
-				
-				return;
-			}
-			
-		}
+	private function getSrc() {
 		
 		$params = array();
 		
@@ -315,13 +336,62 @@ class Form {
 		
 		$params = implode('&amp;', $params);
 		
-		$url = "https://bigmailer.cloud/es/integration/newsletter/form/{$this->public_key}?{$params}";
-//		$url = "http://bigmailer.local.net/es/integration/newsletter/form/{$this->public_key}?{$params}";
+		$result = "https://bigmailer.cloud/es/integration/newsletter/form/{$this->public_key}?{$params}";
+//		$result = "http://bigmailer.local.net/es/integration/newsletter/form/{$this->public_key}?{$params}";
+
+		return $result;
 		
-		$result = "<iframe id='bigmailer-iframe' src='{$url}' frameborder='0' scrolling='no' style='width: {$this->width}; height: {$this->height};' ></iframe>";
+	}
+	
+	/**
+	 * 
+	 * @param string $src
+	 * @return string
+	 */
+	private function getLoaderJS($src) {
 		
+		$result = REGISTROS_PATH . "/res/js/bigmailer-form-loader.js";
+		$result = file_get_contents($result);
 		
+		$result = str_replace('_src_', $src, $result);
+		$result = str_replace('_id_', $this->id, $result);
 		
+		$result = "<script>\n{$result}\n</script>";
+		
+		return $result;
+	}
+	
+	/**
+	 * Returns HTML code of IFRAME.
+	 * 
+	 * @return string|NULL
+	 */
+	public function render($show_registered = FALSE) {
+		
+		if (!$show_registered) {
+			
+			if ($this->isRegistered()) {
+				
+				return;
+			}
+			
+		}
+		
+		$src = $this->getLoadOnShow() ? NULL : $this->getSrc();
+		$src = $src ? "src='{$src}'" : NULL;
+
+		
+		$result = "<iframe id='bigmailer-iframe-{$this->id}' class='bigmailer-iframe' {$src} frameborder='0' scrolling='no' style='width: {$this->width}; height: {$this->height};' ></iframe>";
+		
+		if ($this->getLoadOnShow()) {
+			
+			$result .= $this->getLoaderJS($this->getSrc());
+		}
+		
+//		echo "<pre>";
+//		echo htmlentities($result);
+//		echo "</pre>---";
+
 		return $result;
 		
 	}

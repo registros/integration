@@ -8,6 +8,12 @@
  * @link        http://registros.net
  */
 
+if (!defined('REGISTROS_PATH')) {
+	
+	define('REGISTROS_PATH', __DIR__);
+}
+
+
 require_once 'base.php';
 
 /**
