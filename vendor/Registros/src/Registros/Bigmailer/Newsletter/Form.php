@@ -10,6 +10,9 @@
 
 namespace Registros\Bigmailer\Newsletter;
 
+use Registros\Bigmailer\Exception\Exception;
+use const REGISTROS_PATH;
+
 /**
  * Description of Form
  *
@@ -28,6 +31,12 @@ class Form {
 	 * @var string
 	 */
 	private $id;
+	
+	/**
+	 *
+	 * @var string
+	 */
+	private $language;
 	
 	/**
 	 *
@@ -104,6 +113,33 @@ class Form {
 		$this->callback_controller = $callback_controller;
 	}
 
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	function getLanguage() {
+		return $this->language;
+	}
+
+	/**
+	 * Sets form Language
+	 * 
+	 * @param string $language Language code as ISO 639-1
+	 */
+	function setLanguage($language) {
+		
+		$language = trim(strtolower($language));
+		
+		if (!in_array($language, array('en', 'es', 'ca', 'fr', 'pl', 'pt', 'it', 'de', 'nl'))) {
+			
+			throw new Exception("Unsupported language");
+		}
+		
+		$this->language = $language;
+	}
+
+	
 	
 	/**
 	 * 
@@ -336,9 +372,14 @@ class Form {
 		
 		$params = implode('&amp;', $params);
 		
-		$result = "https://bigmailer.cloud/es/integration/newsletter/form/{$this->public_key}?{$params}";
-//		$result = "http://bigmailer.local.net/es/integration/newsletter/form/{$this->public_key}?{$params}";
-
+		if ($language = $this->getLanguage()) {
+			
+			$language .= '/';
+		}
+		
+		$result = "https://bigmailer.cloud/{$language}integration/newsletter/form/{$this->public_key}?{$params}";
+//		$result = "http://bigmailer.local.net/{$language}integration/newsletter/form/{$this->public_key}?{$params}";
+		
 		return $result;
 		
 	}

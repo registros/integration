@@ -31,6 +31,7 @@
 		$newsletter->setCss('examples/bigmailer-newsletter-form.css');
 		$newsletter->setCallback('examples/bigmailer-newsletter-callback.php');
 //		$newsletter->setTitle('Newsletter');
+//		$newsletter->setLanguage('pl');
 		
 		echo $newsletter->render();
 
