@@ -317,7 +317,7 @@ class Form {
 		
 		if ($params) {
 			
-			$params .= '&amp;';
+			$params .= '&';
 		}
 		
 		$params .= "session=" . $this->getCallbackController()->getSession();
@@ -370,7 +370,7 @@ class Form {
 			$params[] = $this->getParam('title', $title);
 		}
 		
-		$params = implode('&amp;', $params);
+		$params = implode('&', $params);
 		
 		if ($language = $this->getLanguage()) {
 			
