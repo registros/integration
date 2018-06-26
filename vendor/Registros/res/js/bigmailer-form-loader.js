@@ -34,4 +34,4 @@ var bigmailer_iframe_interval__id_ = setInterval(function () {
 
 	}
 
-}, 1000);
+}, 200);
