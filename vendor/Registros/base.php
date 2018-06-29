@@ -9,6 +9,8 @@
  */
 
 
+define('REGISTROS_BASE', TRUE);
+
 
 /**
  * Is console request.
@@ -29,7 +31,7 @@ define('NEW_LINE', IS_CONSOLE ? "\n" : '<br>');
  */
 function output($string) {
 	
-	if ($string instanceof Exception) {
+	if ($string instanceof Throwable) {
 	
 		show($string);
 		return;		
@@ -51,10 +53,10 @@ function output($string) {
 /**
  * Render the information of exception.
  * 
- * @param Exception $exc
+ * @param Throwable $exc
  * @return string
  */
-function renderException(Exception $exc) {
+function renderException(Throwable $exc) {
 	
 	$result = array();
 	$result[] = "Exception class: " . get_class($exc);
@@ -78,7 +80,7 @@ function renderException(Exception $exc) {
  */
 function show(& $data) {
 	
-	if ($data instanceof Exception) {
+	if ($data instanceof Throwable) {
 	
 		echo renderException($data), NEW_LINE;
 		return;		

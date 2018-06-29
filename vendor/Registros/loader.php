@@ -14,7 +14,11 @@ if (!defined('REGISTROS_PATH')) {
 }
 
 
-require_once 'base.php';
+if (!defined('REGISTROS_BASE')) {
+
+	require 'base.php';
+
+}
 
 /**
  * 
