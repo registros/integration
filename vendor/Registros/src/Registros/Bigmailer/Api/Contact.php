@@ -132,5 +132,42 @@ class Contact extends Conection {
 	
 	
 	
+	/**
+	 * Adds new contact using the database public key as reference to found destination database.
+	 * 
+	 * @param string $email Email address
+	 * @param string $name Name of contact (it can be NULL)
+	 * @param string $db_key Public database key
+	 * @param string $ip Contact IP
+	 * @param int $mode Work mode
+	 * @return boolean
+	 * @throws Exception
+	 * @throws Remote
+	 */
+	public function addByDataBaseKey($email, $name, $db_key, $ip = NULL, $mode = self::ADD_MODE_WITHOUT_PERMISSION) {
+		
+		return (boolean)$this->run('Contact', __FUNCTION__, array($email, $name, $db_key, $ip, $mode));
+		
+	}	
+	
+
+	/**
+	 * Adds new contact using the language as reference to found destination database.
+	 * 
+	 * @param string $email Email address
+	 * @param string $name Name of contact (it can be NULL)
+	 * @param string $language Language code as (ISO 639-1)
+	 * @param string $ip Contact IP
+	 * @param int $mode Work mode
+	 * @return boolean
+	 * @throws Exception
+	 * @throws Remote
+	 */
+	public function addByLanguage($email, $name, $language, $ip = NULL, $mode = self::ADD_MODE_WITHOUT_PERMISSION) {
+		
+		return (boolean)$this->run('Contact', __FUNCTION__, array($email, $name, $language, $ip, $mode));
+		
+	}		
+	
 	
 }
