@@ -170,4 +170,19 @@ class Contact extends Conection {
 	}		
 	
 	
+	/**
+	 * Returns the list of databases that contain the contact.
+	 * 
+	 * @param type $email
+	 * @return array
+	 */
+	public function dataBases($email) {
+		
+		$result = $this->run('Contact', __FUNCTION__, array($email));
+		
+		return $this->readJson($result);
+		
+	}
+	
+	
 }

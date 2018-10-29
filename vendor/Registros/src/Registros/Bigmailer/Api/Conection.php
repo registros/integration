@@ -106,9 +106,43 @@ abstract class Conection {
 
 		return @$response['result'];
 		
-		
 	}
 
+	
+	/**
+	 * Read data packed by class Api\Result\Json on SOAP server.
+	 * 
+	 * @param array|string $data
+	 * @return mixed
+	 * @throws Exception
+	 */
+	public function readJson($data) {
+		
+		if (is_string($data)) {
+			
+			$data = json_decode($data, TRUE);
+			
+		}
+		
+		if (!is_array($data)) {
+			
+			throw new Exception("Invalid data format.");
+		}
+		
+		if ((!@$data['successful']) or (!@$data['type'])) {
+			
+			throw new Exception("Invalid data format.");
+		}
+		
+		if ($data['type'] != gettype(@$data['result'])) {
+			
+			throw new Exception('Error during type recovery.');
+		}
+		
+		return @$data['result'];
+		
+	}
+	
 	
 	
 }
